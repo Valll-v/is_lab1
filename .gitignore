@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+*.db
+.pytest_cache/
+.idea/
+bandit-report.*
+pip-audit-report.*
+CLAUDE.md
+instance/
