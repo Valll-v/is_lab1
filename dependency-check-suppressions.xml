@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+    <suppress>
+        <notes><![CDATA[
+        Ложное срабатывание: PyJWT сопоставляется с CPE jwt_project:jwt,
+        а это PHP-библиотека lcobucci/jwt. CVE-2025-45770 к PyJWT не относится
+        (и оспорена мейнтейнерами lcobucci/jwt). pip-audit по PyJWT 2.15.0 чист.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:pypi/pyjwt@.*$</packageUrl>
+        <cpe>cpe:/a:jwt_project:jwt</cpe>
+    </suppress>
+</suppressions>

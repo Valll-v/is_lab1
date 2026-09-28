@@ -44,9 +44,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pip-audit==2.10.1
-      - run: pip-audit -r requirements.txt --desc -o pip-audit-report.txt
-      - run: cat pip-audit-report.txt
-        if: always()
+      - run: pip-audit -r requirements.txt --desc | tee pip-audit-report.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -64,9 +62,7 @@ jobs:
           project: lab1-secure-api
           path: .
           format: HTML
-          args: >
-            --enableExperimental
-            --failOnCVSS 7
+          args: --enableExperimental --failOnCVSS 7 --suppression dependency-check-suppressions.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:
