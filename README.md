@@ -256,4 +256,4 @@ pip-audit -r requirements.txt
 
 ### Ссылка на последний успешный запуск pipeline
 
-TODO
+https://github.com/Valll-v/is_lab1/actions/runs/36443058134
