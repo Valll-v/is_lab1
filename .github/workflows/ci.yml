@@ -44,6 +44,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pip-audit==2.10.1
+      # pip-audit сам резолвит requirements.txt в полное дерево (транзитивно);
+      # --no-deps, который это отключает, не используется
       - run: pip-audit -r requirements.txt --desc | tee pip-audit-report.txt
       - uses: actions/upload-artifact@v4
         if: always()
@@ -57,10 +59,16 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # у Dependency-Check нет резолвера, поэтому полное дерево ставит pip,
+      # а сканер читает метаданные всех установленных пакетов в deps/
+      - run: pip install -r requirements.txt --target deps
       - uses: dependency-check/Dependency-Check_Action@main
         with:
           project: lab1-secure-api
-          path: .
+          path: deps
           format: HTML
           args: --enableExperimental --failOnCVSS 7 --suppression dependency-check-suppressions.xml
       - uses: actions/upload-artifact@v4

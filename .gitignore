@@ -6,6 +6,8 @@ __pycache__/
 .idea/
 bandit-report.*
 pip-audit-report.*
+deps/
+reports/
 CLAUDE.md
 instance/
 notes/
